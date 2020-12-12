@@ -5,12 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Techno</title>
   <script src="./vue.min.js"></script>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="app">
-    {{mensagem}}
+    <section class="produtos">
+      <div class="produto" :key="produto.id" v-for="produto in produtos">
+        <img :src="produto.img" :alt="produto.nome" class="produto_img">
+        <div class="produto_info">
+          <h2 class="produto_titulo">{{produto.nome}}</h2>
+          <span class="produto_preco">{{produto.preco | alteraPreco}}</span>
+        </div>     
+      </div>
+    </section>
+
+
   </div>
+  
   <script src="./app.js"></script>
 </body>
 </html>
