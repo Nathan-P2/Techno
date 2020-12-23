@@ -6,10 +6,11 @@ const vm = new Vue({
       carrinho: [],
       mensagemAlerta: "Item Adicionado",
       alertaAtivo: false,
+      carrinhoAtivo: false
    },
    filters: {
       alteraPreco(valor) {
-      return valor.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
+         return valor.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
       }
    },
    computed: {
@@ -48,6 +49,9 @@ const vm = new Vue({
       fecharModal({target, currentTarget}) {
          if(target === currentTarget) this.produto = false;
       },
+      clickForaCarrinho({target, currentTarget}) {
+         if(target === currentTarget) this.carrinhoAtivo = false;
+      },
       adicionarItem() {
          this.produto.estoque--;
          const {id, nome, preco} = this.produto;
@@ -69,6 +73,7 @@ const vm = new Vue({
             this.alertaAtivo = false;
          }, 1500)
       },
+      
       router() {
          const hash = document.location.hash;
          if(hash) {
